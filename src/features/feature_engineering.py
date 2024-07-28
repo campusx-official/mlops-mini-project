@@ -5,6 +5,7 @@ import os
 from sklearn.feature_extraction.text import CountVectorizer
 import yaml
 import logging
+import pickle
 
 # logging configuration
 logger = logging.getLogger('feature_engineering')
@@ -72,6 +73,10 @@ def apply_bow(train_data: pd.DataFrame, test_data: pd.DataFrame, max_features: i
 
         test_df = pd.DataFrame(X_test_bow.toarray())
         test_df['label'] = y_test
+
+        pickle.dump(vectorizer, open('models/vectorizer.pkl', 'wb'))
+
+
 
         logger.debug('Bag of Words applied and data transformed')
         return train_df, test_df
