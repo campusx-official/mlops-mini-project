@@ -1,4 +1,4 @@
 [core]
     remote = myremote
 ['remote "myremote"']
-    url = C:\Users\Nitish\AppData\Local\Temp
+    url = s3://campusx-bucket
