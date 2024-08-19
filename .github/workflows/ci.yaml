@@ -77,6 +77,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 992382647488.dkr.ecr.ap-southeast-2.amazonaws.com
             docker pull 992382647488.dkr.ecr.ap-southeast-2.amazonaws.com/campusx_ecr:latest
             docker stop my-app || true
             docker rm my-app || true
