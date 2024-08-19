@@ -69,7 +69,7 @@ jobs:
         run: |
           docker push 992382647488.dkr.ecr.ap-southeast-2.amazonaws.com/campusx_ecr:latest
 
-            - name: Setup SSH
+      - name: Setup SSH
         run: |
           echo "${{ secrets.EC2_PRIVATE_KEY }}" > private_key.pem
           chmod 600 private_key.pem
@@ -83,7 +83,7 @@ jobs:
             docker run -d -p 80:5000 -e DAGSHUB_PAT=${{ secrets.DAGSHUB_PAT }} --name campusx-app 992382647488.dkr.ecr.ap-southeast-2.amazonaws.com/campusx_ecr:latest
           EOF
 
-      - name: Cleanup
+      - name: Post Cleanup
         run: |
           rm private_key.pem
 
