@@ -51,23 +51,4 @@ jobs:
           DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
         run: python -m unittest tests/test_flask_app.py
 
-      - name: Login to AWS ECR
-        env:
-          AWS_REGION: ap-southeast-2
-          AWS_ECR_REGISTRY: 992382647488.dkr.ecr.ap-southeast-2.amazonaws.com
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ECR_REGISTRY
-
-      - name: Build Docker image
-        run: |
-          docker build -t campusx_ecr .
-
-      - name: Tag Docker image
-        run: |
-          docker tag campusx_ecr:latest 992382647488.dkr.ecr.ap-southeast-2.amazonaws.com/campusx_ecr:latest
-
-      - name: Push Docker image to AWS ECR
-        run: |
-          docker push 992382647488.dkr.ecr.ap-southeast-2.amazonaws.com/campusx_ecr:latest
+      
