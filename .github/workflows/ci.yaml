@@ -69,14 +69,14 @@ jobs:
         run: |
           docker push 992382647488.dkr.ecr.ap-southeast-2.amazonaws.com/campusx_ecr:latest
 
-      - name: Setup SSH
+            - name: Setup SSH
         run: |
           echo "${{ secrets.EC2_PRIVATE_KEY }}" > private_key.pem
           chmod 600 private_key.pem
 
       - name: Deploy Docker image to EC2
         run: |
-          ssh -i private_key.pem ubuntu@ec2-13-55-157-111.ap-southeast-2.compute.amazonaws.com << EOF
+          ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@ec2-13-55-157-111.ap-southeast-2.compute.amazonaws.com << EOF
             docker pull 992382647488.dkr.ecr.ap-southeast-2.amazonaws.com/campusx_ecr:latest
             docker stop campusx-app || true
             docker rm campusx-app || true
