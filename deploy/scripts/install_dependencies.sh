@@ -24,8 +24,5 @@ sudo /home/ubuntu/aws/install
 # Add 'ubuntu' user to the 'docker' group to run Docker commands without 'sudo'
 sudo usermod -aG docker ubuntu
 
-# Login to AWS ECR
-aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 992382647488.dkr.ecr.ap-southeast-2.amazonaws.com
-
 # Clean up the AWS CLI installation files
 rm -rf /home/ubuntu/awscliv2.zip /home/ubuntu/aws
