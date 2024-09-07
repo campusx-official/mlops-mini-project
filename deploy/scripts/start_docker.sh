@@ -3,7 +3,7 @@
 aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 051826734860.dkr.ecr.ap-southeast-2.amazonaws.com
 
 # Pull the latest image
-docker pull 051826734860.dkr.ecr.ap-southeast-2.amazonaws.com/campusx_ecr:v2
+docker pull 051826734860.dkr.ecr.ap-southeast-2.amazonaws.com/campusx_ecr:latest
 
 # Check if the container 'campusx-app' is running
 if [ "$(docker ps -q -f name=campusx-app)" ]; then
@@ -18,4 +18,4 @@ if [ "$(docker ps -aq -f name=campusx-app)" ]; then
 fi
 
 # Run a new container
-docker run -d -p 80:5000 -e DAGSHUB_PAT=e691c7193ab61dc9678e31c6b92ded8a65f80697 --name campusx-app 051826734860.dkr.ecr.ap-southeast-2.amazonaws.com/campusx_ecr:v2
+docker run -d -p 80:5000 -e DAGSHUB_PAT=e691c7193ab61dc9678e31c6b92ded8a65f80697 --name campusx-app 051826734860.dkr.ecr.ap-southeast-2.amazonaws.com/campusx_ecr:latest
