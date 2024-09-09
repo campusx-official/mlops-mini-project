@@ -83,4 +83,6 @@ jobs:
             --deployment-config-name CodeDeployDefault.AllAtOnce \
             --deployment-group-name MyDockerAppASGDeploymentGroup \
             --s3-location bucket=campusxcodebuildbucket,key=appspec.yml,bundleType=YAML \
-            --file-exists-behavior OVERWRITE
+            --file-exists-behavior OVERWRITE \
+            --region ap-southeast-2  # Specify your AWS region here
+
