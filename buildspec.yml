@@ -8,13 +8,13 @@ phases:
   build:
     commands:
       - echo Pulling appspec.yml from GitHub...
-      - curl -L https://raw.githubusercontent.com/yourusername/yourrepo/main/appspec.yml -o appspec.yml
+      - curl -L https://raw.githubusercontent.com/campusx-official/mlops-mini-project/main/appspec.yml -o appspec.yml
 
       - echo Pulling install_dependencies.sh from GitHub...
-      - curl -L https://raw.githubusercontent.com/yourusername/yourrepo/main/deploy/scripts/install_dependencies.sh -o install_dependencies.sh
+      - curl -L https://raw.githubusercontent.com/campusx-official/mlops-mini-project/main/deploy/scripts/install_dependencies.sh -o install_dependencies.sh
 
       - echo Pulling start_docker.sh from GitHub...
-      - curl -L https://raw.githubusercontent.com/yourusername/yourrepo/main/deploy/scripts/start_docker.sh -o start_docker.sh
+      - curl -L https://raw.githubusercontent.com/campusx-official/mlops-mini-project/main/deploy/scripts/start_docker.sh -o start_docker.sh
 
       - echo Uploading appspec.yml to S3...
       - aws s3 cp appspec.yml s3://campusxcodebuildbucket/appspec.yml
@@ -24,3 +24,10 @@ phases:
 
       - echo Uploading start_docker.sh to S3...
       - aws s3 cp start_docker.sh s3://campusxcodebuildbucket/deploy/scripts/start_docker.sh
+
+artifacts:
+  files:
+    - appspec.yml
+    - install_dependencies.sh
+    - start_docker.sh
+  discard-paths: yes
